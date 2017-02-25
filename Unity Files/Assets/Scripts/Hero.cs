@@ -6,41 +6,45 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour {
 
-    public Rigidbody ball;
-    public bool grounded;
-    public float speed;
+    public Rigidbody Ball;
+    public bool Grounded;
+    public float speed = 50f;
+
 
     private void OnCollisionEnter()
     {
-        grounded = true;
+        Grounded = true;
     }
     private void OnCollisionExit()
     {
-        grounded = false;
+        Grounded = false;
     }
-    private void FixesUpdate()
+    private void FixedUpdate()
     {
         float x;
         float y;
         x = Input.GetAxis("Horizontal");
-        UnityEngine.Debug.Log("Horizontal: " + x);
+        UnityEngine.Debug.LogWarning("Horizontal: " + x);
         y = Input.GetAxis("Vertical");
-        Vector3 Road=new Vector3(x,y,0f);
-        if (grounded)
+        UnityEngine.Debug.LogWarning("Vertical: " + y);
+        Vector3 road=new Vector3(x, y, 0.0f);
+        if (Grounded)
         {
-            Roll(Road);
+            UnityEngine.Debug.LogWarning("Grounded");
+            Roll(road);
         }
 
     }
     public void Roll(Vector3 move)
     {
-        move = move * speed;
-        ball.AddForce(move);
+        Vector3 force;
+        force = move * speed;
+        Ball.AddForce(force);
+        UnityEngine.Debug.LogWarning("Roll: " + move);
     }
     public void Awake()
     {
-        ball=GetComponent<Rigidbody>();
-        speed = 250f;
-        grounded = true;
+        Ball = GetComponent<Rigidbody>();
+        Grounded = true;
     }
 }
