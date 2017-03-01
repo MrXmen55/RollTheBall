@@ -18,14 +18,14 @@ public class Hero : MonoBehaviour {
     {
         grounded = false;
     }
-    private void FixesUpdate()
+    private void FixedUpdate()
     {
         float x;
         float y;
         x = Input.GetAxis("Horizontal");
-        UnityEngine.Debug.Log("Horizontal: " + x);
+        
         y = Input.GetAxis("Vertical");
-        Vector3 Road=new Vector3(x,y,0f);
+        Vector3 Road=new Vector3(x,y,0);
         if (grounded)
         {
             Roll(Road);
